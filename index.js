@@ -18,18 +18,26 @@ function buyIceCream(){
     }    
 }
 
-//(previousState, action)=> newState
 const initialState = {
-    numOfCakes: 10,
+    numOfCakes: 10
+}
+const initialState = {
     numOfIceCream: 20
 }
 
-const reducer = (state = initialState, action)=>{
+const cakereducer = (state = initialCakeState, action)=>{
     switch(action.type){
         case BUY_CAKE: return{
             ...state, //make a copy of the state object then update state with spread operator
             numOfCakes: state.numOfCakes - 1
         }
+        default: return state;
+    }
+}
+
+
+const iceCreamReducer = (state = initialIceCreamState, action)=>{
+    switch(action.type){
         case BUY_ICECREAM: return{
             ...state, //make a copy of the state object then update state with spread operator
             numOfIceCream: state.numOfIceCream - 1
