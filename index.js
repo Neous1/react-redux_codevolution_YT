@@ -2,6 +2,7 @@ const redux = require('redux')
 const createStore = redux.createStore
 
 const BUY_CAKE = 'BUY_CAKE';
+const BUY_ICECREAM= 'BUY_ICECREAM';
 
 //Action creator
 function buyCake(){
@@ -11,9 +12,16 @@ function buyCake(){
     }    
 }
 
+function buyIceCream(){
+    return {
+        type: BUY_ICECREAM
+    }    
+}
+
 //(previousState, action)=> newState
 const initialState = {
-    numOfCakes: 10
+    numOfCakes: 10,
+    numOfIceCream: 20
 }
 
 const reducer = (state = initialState, action)=>{
@@ -21,6 +29,10 @@ const reducer = (state = initialState, action)=>{
         case BUY_CAKE: return{
             ...state, //make a copy of the state object then update state with spread operator
             numOfCakes: state.numOfCakes - 1
+        }
+        case BUY_ICECREAM: return{
+            ...state, //make a copy of the state object then update state with spread operator
+            numOfIceCream: state.numOfIceCream - 1
         }
         default: return state;
     }
@@ -32,4 +44,7 @@ const unsubscribe = store.subscribe(()=> console.log('Updated state', store.getS
 store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
+store.dispatch(buyIceCream())
+store.dispatch(buyIceCream())
+store.dispatch(buyIceCream())
 unsubscribe()
